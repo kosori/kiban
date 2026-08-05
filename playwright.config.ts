@@ -22,7 +22,7 @@ export default defineConfig({
 		},
 	],
 	webServer: {
-		command: 'bun dev',
+		command: 'bun dev:e2e',
 		url: 'http://localhost:3000',
 		reuseExistingServer: !process.env.CI,
 	},

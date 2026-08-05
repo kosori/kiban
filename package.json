@@ -29,6 +29,7 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "dev": "portless kiban next dev --turbopack",
+    "dev:e2e": "next dev --turbopack",
     "start": "next start",
     "check": "ultracite check",
     "fix": "ultracite fix",
