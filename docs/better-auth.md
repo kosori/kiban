@@ -1,11 +1,13 @@
 # Authentication Patterns (Better Auth)
 
+**Note**: The auth backend is fully configured and ready. You must build your own sign-in/sign-up pages using the exported functions from `~/server/auth/client`. The examples below show how to call these functions from your UI components.
+
 ## OAuth Sign-In (Google)
 
 ```typescript
 signIn.social(
-  { provider: 'google', callbackURL: '/set-org' },
-  { onRequest: () => setIsPending(true), onResponse: () => setIsPending(false) }
+	{ provider: 'google', callbackURL: '/' },
+	{ onRequest: () => { /* show loading */ }, onResponse: () => { /* hide loading */ } }
 );
 ```
 
@@ -13,8 +15,8 @@ signIn.social(
 
 ```typescript
 await signIn.email(
-  { email, password, callbackURL: '/set-org' },
-  { onError: (error) => { /* handle */ } }
+	{ email, password, callbackURL: '/' },
+	{ onError: (error) => { /* handle */ } }
 );
 ```
 

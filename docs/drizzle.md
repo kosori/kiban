@@ -1,15 +1,12 @@
 # Drizzle ORM Patterns
 
+**Note**: These patterns reference the auth schema tables. For domain-specific tables, follow the same patterns.
+
 ## Primary Key Patterns
 
+- Text id (used by the auth tables): `text('id').primaryKey()`
 - Auto-incrementing integer: `integer('id').primaryKey().generatedByDefaultAsIdentity()`
 - UUID: `uuid('id').primaryKey().defaultRandom()`
-
-## Soft Delete
-
-- Schema: `deletedAt: timestamp('deleted_at')`
-- Query filter: `isNull(table.deletedAt)`
-- Delete: `.set({ deletedAt: new Date() })`
 
 ## Type Inference
 
@@ -18,37 +15,27 @@ export type User = typeof user.$inferSelect;
 export type NewUser = typeof user.$inferInsert;
 ```
 
-## Index Creation
-
-```typescript
-export const product = createTable('product', { /* fields */ }, (table) => ({
-  nameIdx: index('idx_product_name').on(table.name),
-}));
-```
-
 ## Foreign Key References
 
 - Cascade delete: `{ onDelete: 'cascade' }`
 - Set null: `{ onDelete: 'set null' }`
 
 ```typescript
-organizationId: text('organization_id').notNull().references(() => organization.id, { onDelete: 'cascade' }),
-```
-
-## Many-to-Many Junction Tables
-
-```typescript
-export const roleToPermission = createTable('role_to_permission', {
-  roleId: integer('role_id').notNull().references(() => role.id, { onDelete: 'cascade' }),
-  permissionId: integer('permission_id').notNull().references(() => permission.id, { onDelete: 'cascade' }),
-}, (t) => ({ primaryKey: [t.roleId, t.permissionId] }));
+// src/server/db/schema/auth.ts
+userId: text('user_id')
+	.notNull()
+	.references(() => user.id, { onDelete: 'cascade' }),
 ```
 
 ## Timestamp Defaults
 
 ```typescript
-createdAt: timestamp('created_at').$defaultFn(() => /* @__PURE__ */ new Date()).notNull(),
-updatedAt: timestamp('updated_at').$defaultFn(() => /* @__PURE__ */ new Date()).notNull(),
+createdAt: timestamp('created_at')
+	.$defaultFn(() => new Date())
+	.notNull(),
+updatedAt: timestamp('updated_at')
+	.$defaultFn(() => new Date())
+	.notNull(),
 ```
 
 ## Insert with Returning
@@ -61,4 +48,31 @@ const [newUser] = await ctx.db.insert(user).values({ name, email }).returning();
 
 ```typescript
 await db.update(user).set({ ...(name && { name }), ...(email && { email }) }).where(eq(user.id, id));
+```
+
+## Reference Patterns
+
+Not used in this codebase yet — patterns to reach for when a domain needs them.
+
+### Soft Delete
+
+- Schema: `deletedAt: timestamp('deleted_at')`
+- Query filter: `isNull(table.deletedAt)`
+- Delete: `.set({ deletedAt: new Date() })`
+
+### Index Creation
+
+```typescript
+export const user = createTable('user', { /* fields */ }, (table) => ({
+	nameIdx: index('idx_user_name').on(table.name),
+}));
+```
+
+### Many-to-Many Junction Tables
+
+```typescript
+export const teamMember = createTable('team_member', {
+	teamId: text('team_id').notNull().references(() => team.id, { onDelete: 'cascade' }),
+	userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
+}, (t) => ({ primaryKey: [t.teamId, t.userId] }));
 ```
