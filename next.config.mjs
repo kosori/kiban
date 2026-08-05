@@ -8,21 +8,25 @@ import './src/env.ts';
 const config = {
 	logging: false,
 	async headers() {
+		const isDev = process.env.NODE_ENV === 'development';
+
+		const csp = [
+			"default-src 'self'",
+			`script-src 'self' 'unsafe-inline' 'unsafe-eval'${isDev ? ' https://unpkg.com' : ''}`,
+			"style-src 'self' 'unsafe-inline'",
+			"img-src 'self' data: blob:",
+			"font-src 'self'",
+			`connect-src 'self'${isDev ? ' https://unpkg.com' : ''}`,
+			"frame-ancestors 'self'",
+		].join('; ');
+
 		return [
 			{
 				source: '/(.*)',
 				headers: [
 					{
 						key: 'Content-Security-Policy',
-						value: [
-							"default-src 'self'",
-							"script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com",
-							"style-src 'self' 'unsafe-inline'",
-							"img-src 'self' data: blob:",
-							"font-src 'self'",
-							"connect-src 'self' https://unpkg.com",
-							"frame-ancestors 'self'",
-						].join('; '),
+						value: csp,
 					},
 					{
 						key: 'X-Content-Type-Options',
