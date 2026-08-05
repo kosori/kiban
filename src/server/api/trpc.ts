@@ -27,7 +27,13 @@ import { db } from '~/server/db';
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
-	const data = await auth.api.getSession({ headers: opts.headers });
+	let data: Awaited<ReturnType<typeof auth.api.getSession>> | undefined;
+
+	try {
+		data = await auth.api.getSession({ headers: opts.headers });
+	} catch {
+		// auth subsystem failure — fall back to unauthenticated context
+	}
 
 	return {
 		db,
