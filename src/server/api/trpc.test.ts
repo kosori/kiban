@@ -18,12 +18,13 @@ describe('protectedProcedure', () => {
 		protected: protectedProcedure.query(() => 'ok'),
 	});
 
-	it('throws UNAUTHORIZED when session is undefined', () => {
+	it('throws UNAUTHORIZED when session is undefined', async () => {
 		const ctx = { session: undefined, user: undefined };
 		const caller = testRouter.createCaller(ctx as never);
 
-		expect(caller.protected()).rejects.toThrow(TRPCError);
-		expect(caller.protected()).rejects.toHaveProperty('code', 'UNAUTHORIZED');
+		const promise = caller.protected();
+		await expect(promise).rejects.toThrow(TRPCError);
+		await expect(promise).rejects.toHaveProperty('code', 'UNAUTHORIZED');
 	});
 
 	it('allows access when session exists', async () => {
@@ -38,11 +39,11 @@ describe('protectedProcedure', () => {
 		expect(result).toBe('ok');
 	});
 
-	it('throws UNAUTHORIZED when session is null', () => {
+	it('throws UNAUTHORIZED when session is null', async () => {
 		const ctx = { session: null, user: null };
 		const caller = testRouter.createCaller(ctx as never);
 
-		expect(caller.protected()).rejects.toThrow(TRPCError);
+		await expect(caller.protected()).rejects.toThrow(TRPCError);
 	});
 });
 
