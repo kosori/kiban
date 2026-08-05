@@ -7,5 +7,8 @@ export const getBaseUrl = () => {
 	if (env.VERCEL_URL) {
 		return `https://${env.VERCEL_URL}`;
 	}
+	if (env.APP_URL) {
+		return env.APP_URL;
+	}
 	return 'https://kiban.localhost';
 };
