@@ -4,7 +4,7 @@ This document outlines essential guidelines for AI agents working within the Kib
 
 ## Development Commands
 
-- **Build**: `bun build`
+- **Build**: `bun run build`
 - **Lint/Format**: `bun check` (checks), `bun fix` (auto-fixes), `bun fix:unsafe` (auto-fixes unsafe code)
 - **Type Check**: `bun typecheck`
 - **Run all tests**: `bun test`

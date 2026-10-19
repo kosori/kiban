@@ -76,7 +76,7 @@ A modern, full-stack application template built with Next.js, designed to provid
 ### Available Scripts
 
 - `bun dev` - Start development server
-- `bun build` - Build for production
+- `bun run build` - Build for production
 - `bun start` - Start production server
 - `bun check` - Lint and format code
 - `bun fix` - Auto-fix linting issues
