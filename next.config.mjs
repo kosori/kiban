@@ -6,6 +6,7 @@ import './src/env.ts';
 
 /** @type {import("next").NextConfig} */
 const config = {
+	agentRules: false,
 	async headers() {
 		const isDev = process.env.NODE_ENV === 'development';
 
