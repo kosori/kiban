@@ -82,8 +82,8 @@ const RootLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => (
 			{env.NODE_ENV === 'development' && (
 				<Script
 					crossOrigin='anonymous'
-					integrity='sha384-9R80nES+SMS2/gQ42P+Pw818FgW6VtchUxT6IjF8SHzIJSZdWDjLnr/NTCL8n28Q'
-					src='https://unpkg.com/react-grab@0.1.44/dist/index.global.js'
+					integrity='sha384-PXOWAzllLihCpnqFflLZrth6D6UsI8PqPYbA6qYnE44Cld6haJIBjLZR4onqH+3z'
+					src='https://unpkg.com/react-grab@0.2.0/dist/index.global.js'
 					strategy='beforeInteractive'
 				/>
 			)}
