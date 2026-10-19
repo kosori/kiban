@@ -1,5 +1,9 @@
 # tRPC Patterns
 
+## Client
+
+Kiban uses the classic `createTRPCReact` client from `~/trpc/react`. It is still supported, but tRPC now recommends `@trpc/tanstack-react-query` for new projects; this template intentionally keeps the classic client.
+
 ## Protected Procedure
 
 **When**: Requires authentication. Validates session, throws UNAUTHORIZED if not.

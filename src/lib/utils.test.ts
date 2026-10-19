@@ -7,8 +7,8 @@ describe('cn utility', () => {
 	});
 
 	it('filters out falsy values', () => {
-		const shouldSkip = false;
-		expect(cn('base', shouldSkip && 'skip', undefined, null, '')).toBe('base');
+		const flags: boolean[] = [false];
+		expect(cn('base', flags[0] && 'skip', undefined, null, '')).toBe('base');
 	});
 
 	it('handles object syntax for conditionals', () => {
@@ -16,9 +16,8 @@ describe('cn utility', () => {
 	});
 
 	it('handles array syntax', () => {
-		const isActive = true;
-		const isHidden = false;
-		expect(cn(['base', isActive && 'active', isHidden && 'hidden'])).toBe(
+		const flags: boolean[] = [true, false];
+		expect(cn(['base', flags[0] && 'active', flags[1] && 'hidden'])).toBe(
 			'base active'
 		);
 	});

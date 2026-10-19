@@ -9,44 +9,44 @@ import { cn } from '~/lib/utils';
 import { TRPCReactProvider } from '~/trpc/react';
 
 export const metadata: Metadata = {
-	metadataBase: new URL(
-		env.VERCEL_ENV === 'production'
-			? 'https://kiban.codingcodax.dev'
-			: 'https://kiban.localhost'
-	),
-	title: 'Kiban - Template Moderno para Aplicaciones Full-stack',
-	description:
-		'Kiban es un template de aplicación full-stack moderno, diseñado para ofrecer una base sólida, segura y escalable. Utiliza Next.js, tRPC, Drizzle ORM y Better Auth para acelerar el desarrollo de tus proyectos.',
-	openGraph: {
-		title: 'Kiban - Template Moderno para Aplicaciones Full-stack',
-		description:
-			'Kiban es un template de aplicación full-stack moderno, diseñado para ofrecer una base sólida, segura y escalable. Utiliza Next.js, tRPC, Drizzle ORM y Better Auth para acelerar el desarrollo de tus proyectos.',
-		url: 'https://kiban.codingcodax.dev',
-		siteName: 'Kiban',
-		images: [
-			{
-				url: '/og.png',
-				width: 1200,
-				height: 630,
-				alt: 'Kiban - Template Moderno para Aplicaciones Full-stack',
-				type: 'image/png',
-			},
-		],
-	},
 	appleWebApp: {
 		capable: true,
-		statusBarStyle: 'black-translucent',
-		title: 'Kiban',
 		startupImage: [
 			{
 				url: '/web-app-manifest-512x512.png',
 			},
 		],
+		statusBarStyle: 'black-translucent',
+		title: 'Kiban',
 	},
+	description:
+		'Kiban es un template de aplicación full-stack moderno, diseñado para ofrecer una base sólida, segura y escalable. Utiliza Next.js, tRPC, Drizzle ORM y Better Auth para acelerar el desarrollo de tus proyectos.',
+	metadataBase: new URL(
+		env.VERCEL_ENV === 'production'
+			? 'https://kiban.codingcodax.dev'
+			: 'https://kiban.localhost'
+	),
+	openGraph: {
+		description:
+			'Kiban es un template de aplicación full-stack moderno, diseñado para ofrecer una base sólida, segura y escalable. Utiliza Next.js, tRPC, Drizzle ORM y Better Auth para acelerar el desarrollo de tus proyectos.',
+		images: [
+			{
+				alt: 'Kiban - Template Moderno para Aplicaciones Full-stack',
+				height: 630,
+				type: 'image/png',
+				url: '/og.png',
+				width: 1200,
+			},
+		],
+		siteName: 'Kiban',
+		title: 'Kiban - Template Moderno para Aplicaciones Full-stack',
+		url: 'https://kiban.codingcodax.dev',
+	},
+	title: 'Kiban - Template Moderno para Aplicaciones Full-stack',
 	twitter: {
 		card: 'summary_large_image',
-		site: '@codingcodax',
 		creator: '@codingcodax',
+		site: '@codingcodax',
 	},
 };
 
@@ -58,11 +58,11 @@ const fontMono = Geist_Mono({
 });
 
 export const viewport: Viewport = {
-	themeColor: [
-		{ media: '(prefers-color-scheme: light)', color: '#F8FAFC' },
-		{ media: '(prefers-color-scheme: dark)', color: '#0E172A' },
-	],
 	maximumScale: 1,
+	themeColor: [
+		{ color: '#F8FAFC', media: '(prefers-color-scheme: light)' },
+		{ color: '#0E172A', media: '(prefers-color-scheme: dark)' },
+	],
 	userScalable: false,
 };
 

@@ -4,12 +4,12 @@ import { getSession } from './get-session';
 
 vi.mock('~/env', () => ({
 	env: {
-		NODE_ENV: 'test',
-		POSTGRES_URL: 'postgresql://user:pass@localhost:5432/test',
+		APP_URL: undefined,
 		BETTER_AUTH_SECRET: 'test-secret',
 		GOOGLE_CLIENT_ID: 'test-id',
 		GOOGLE_CLIENT_SECRET: 'test-secret',
-		APP_URL: undefined,
+		NODE_ENV: 'test',
+		POSTGRES_URL: 'postgresql://user:pass@localhost:5432/test',
 	},
 }));
 
@@ -19,9 +19,9 @@ describe('getSession procedure', () => {
 	it('returns session and user from context', async () => {
 		const mockCtx = {
 			db: {},
-			session: { id: 's1', userId: 'u1', expiresAt: new Date() },
-			user: { id: 'u1', name: 'Test', email: 'test@example.com' },
 			headers: new Headers(),
+			session: { expiresAt: new Date(), id: 's1', userId: 'u1' },
+			user: { email: 'test@example.com', id: 'u1', name: 'Test' },
 		};
 
 		const caller = createTestCaller(() => mockCtx as never);
@@ -34,9 +34,9 @@ describe('getSession procedure', () => {
 	it('returns undefined session and user when not authenticated', async () => {
 		const mockCtx = {
 			db: {},
+			headers: new Headers(),
 			session: undefined,
 			user: undefined,
-			headers: new Headers(),
 		};
 
 		const caller = createTestCaller(() => mockCtx as never);
@@ -49,9 +49,9 @@ describe('getSession procedure', () => {
 	it('returns only session and user keys', async () => {
 		const mockCtx = {
 			db: {},
+			headers: new Headers(),
 			session: undefined,
 			user: undefined,
-			headers: new Headers(),
 		};
 
 		const caller = createTestCaller(() => mockCtx as never);

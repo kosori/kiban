@@ -1,5 +1,7 @@
 # TypeScript Conventions
 
+This project uses TypeScript 7 with the native compiler. `bun typecheck` runs `tsc --noEmit`.
+
 ## type vs interface
 
 - Use `type` for most things

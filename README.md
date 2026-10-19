@@ -15,11 +15,12 @@ A modern, full-stack application template built with Next.js, designed to provid
 ## Tech Stack
 
 - **Framework**: [Next.js](https://nextjs.org) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org) 7
 - **Database**: [PostgreSQL](https://www.postgresql.org/) with [Drizzle ORM](https://orm.drizzle.team)
 - **API**: [tRPC](https://trpc.io) for type-safe API calls
 - **Styling**: [Tailwind CSS](https://tailwindcss.com) (v4) with [shadcn/ui](https://ui.shadcn.com) components
 - **Authentication**: [Better Auth](https://www.better-auth.com)
-- **Testing**: [Vitest](https://vitest.dev) & [Playwright](https://playwright.dev/)
+- **Testing**: [Vitest](https://vitest.dev) 5 & [Playwright](https://playwright.dev/)
 - **Deployment**: [Vercel](https://vercel.com)
 
 ## Getting Started

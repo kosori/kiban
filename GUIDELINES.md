@@ -53,7 +53,7 @@ bun test:e2e   # Run end-to-end tests (if applicable)
 
 ### Deployment
 
-- `main` branch auto-deploys to production via Vercel
+- `master` branch auto-deploys to production via Vercel
 - Preview deployments created for all PRs
 - Check deployment status in PR checks before merging
 
@@ -63,16 +63,16 @@ We use **GitHub Flow** - a simple, branch-based workflow.
 
 ### Branch Structure
 
-- **`main`** - Production branch, always deployable, auto-deploys to Vercel
+- **`master`** - Production branch, always deployable, auto-deploys to Vercel
 - **Feature branches** - Short-lived branches for specific changes
 
 ### Workflow
 
-1. **Create a branch** from `main`:
+1. **Create a branch** from `master`:
 
    ```bash
-   git checkout main
-   git pull origin main
+   git checkout master
+   git pull origin master
    git checkout -b feature/your-feature-name
    ```
 
@@ -102,7 +102,7 @@ Use descriptive names with prefixes:
 
 - **Keep branches short-lived** - Aim for 1-3 days max
 - **Delete after merge** - GitHub can auto-delete after PR merge
-- **Sync with main regularly** - Rebase or merge main into long-running branches
+- **Sync with master regularly** - Rebase or merge master into long-running branches
 
 ## Commit Conventions
 

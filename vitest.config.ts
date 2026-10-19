@@ -5,11 +5,11 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
 	plugins: [react()],
 	test: {
-		environment: 'happy-dom',
-		globals: true,
-		exclude: ['**/node_modules/**', '**/e2e/**'],
 		alias: {
 			'~': path.resolve(import.meta.dirname, './src'),
 		},
+		environment: 'happy-dom',
+		exclude: ['**/node_modules/**', '**/e2e/**'],
+		globals: true,
 	},
 });

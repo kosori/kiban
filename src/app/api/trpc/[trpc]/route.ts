@@ -14,10 +14,8 @@ const createContext = async (req: NextRequest) =>
 
 const handler = (req: NextRequest) =>
 	fetchRequestHandler({
-		endpoint: '/api/trpc',
-		req,
-		router: appRouter,
 		createContext: () => createContext(req),
+		endpoint: '/api/trpc',
 		onError:
 			env.NODE_ENV === 'development'
 				? ({ path, error }) => {
@@ -26,6 +24,8 @@ const handler = (req: NextRequest) =>
 						);
 					}
 				: undefined,
+		req,
+		router: appRouter,
 	});
 
 export { handler as GET, handler as POST };

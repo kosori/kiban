@@ -6,7 +6,6 @@ import './src/env.ts';
 
 /** @type {import("next").NextConfig} */
 const config = {
-	logging: false,
 	async headers() {
 		const isDev = process.env.NODE_ENV === 'development';
 
@@ -22,7 +21,6 @@ const config = {
 
 		return [
 			{
-				source: '/(.*)',
 				headers: [
 					{
 						key: 'Content-Security-Policy',
@@ -45,9 +43,11 @@ const config = {
 						value: 'strict-origin-when-cross-origin',
 					},
 				],
+				source: '/(.*)',
 			},
 		];
 	},
+	logging: false,
 };
 
 export default config;

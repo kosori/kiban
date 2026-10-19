@@ -4,12 +4,12 @@ import { createTRPCRouter, protectedProcedure } from './trpc';
 
 vi.mock('~/env', () => ({
 	env: {
-		NODE_ENV: 'test',
-		POSTGRES_URL: 'postgresql://user:pass@localhost:5432/test',
+		APP_URL: undefined,
 		BETTER_AUTH_SECRET: 'test-secret',
 		GOOGLE_CLIENT_ID: 'test-id',
 		GOOGLE_CLIENT_SECRET: 'test-secret',
-		APP_URL: undefined,
+		NODE_ENV: 'test',
+		POSTGRES_URL: 'postgresql://user:pass@localhost:5432/test',
 	},
 }));
 
@@ -29,7 +29,7 @@ describe('protectedProcedure', () => {
 
 	it('allows access when session exists', async () => {
 		const ctx = {
-			session: { id: 's1', userId: 'u1', expiresAt: new Date() },
+			session: { expiresAt: new Date(), id: 's1', userId: 'u1' },
 			user: { id: 'u1', name: 'Test' },
 		};
 		const caller = testRouter.createCaller(ctx as never);

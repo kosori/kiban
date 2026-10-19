@@ -19,7 +19,8 @@
         "useTopLevelRegex": "off"
       },
       "suspicious": {
-        "noArrayIndexKey": "off"
+        "noArrayIndexKey": "off",
+        "noShadow": "off"
       },
       "nursery": {
         "useSortedClasses": {
@@ -28,8 +29,7 @@
           "options": {
             "functions": ["clsx", "cva", "cn"]
           }
-        },
-        "noShadow": "off"
+        }
       },
       "complexity": {
         "noExcessiveCognitiveComplexity": "off",
@@ -44,7 +44,7 @@
           }
         }
       },
-      "recommended": true
+      "preset": "recommended"
     }
   },
   "css": {
