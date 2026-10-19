@@ -9,7 +9,7 @@
 
 import { initTRPC, TRPCError } from '@trpc/server';
 import superjson from 'superjson';
-import { ZodError } from 'zod';
+import { ZodError, z } from 'zod';
 
 import { auth } from '~/server/auth';
 import { db } from '~/server/db';
@@ -31,8 +31,8 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
 
 	try {
 		data = await auth.api.getSession({ headers: opts.headers });
-	} catch {
-		// auth subsystem failure — fall back to unauthenticated context
+	} catch (error) {
+		console.error('[TRPC] failed to resolve auth context', error);
 	}
 
 	return {
@@ -58,7 +58,7 @@ const t = initTRPC.context<typeof createTRPCContext>().create({
 			data: {
 				...shape.data,
 				zodError:
-					error.cause instanceof ZodError ? error.cause.flatten() : null,
+					error.cause instanceof ZodError ? z.flattenError(error.cause) : null,
 			},
 		};
 	},

@@ -63,9 +63,9 @@ Not used in this codebase yet — patterns to reach for when a domain needs them
 ### Index Creation
 
 ```typescript
-export const user = createTable('user', { /* fields */ }, (table) => ({
-	nameIdx: index('idx_user_name').on(table.name),
-}));
+export const user = createTable('user', { /* fields */ }, (table) => [
+	index('idx_user_name').on(table.name),
+]);
 ```
 
 ### Many-to-Many Junction Tables
@@ -74,5 +74,5 @@ export const user = createTable('user', { /* fields */ }, (table) => ({
 export const teamMember = createTable('team_member', {
 	teamId: text('team_id').notNull().references(() => team.id, { onDelete: 'cascade' }),
 	userId: text('user_id').notNull().references(() => user.id, { onDelete: 'cascade' }),
-}, (t) => ({ primaryKey: [t.teamId, t.userId] }));
+}, (t) => [primaryKey({ columns: [t.teamId, t.userId] })]);
 ```

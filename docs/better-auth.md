@@ -2,6 +2,8 @@
 
 **Note**: The auth backend is fully configured and ready. You must build your own sign-in/sign-up pages using the exported functions from `~/server/auth/client`. The examples below show how to call these functions from your UI components.
 
+**CLI**: Better Auth CLI commands now use the `auth` package (e.g. `bunx auth@latest check schema`). `BETTER_AUTH_SECRET` must be at least 32 characters.
+
 ## OAuth Sign-In (Google)
 
 ```typescript
