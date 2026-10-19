@@ -13,10 +13,10 @@ const config = {
 		const csp = [
 			"default-src 'self'",
 			`script-src 'self' 'unsafe-inline' 'unsafe-eval'${isDev ? ' https://unpkg.com' : ''}`,
-			"style-src 'self' 'unsafe-inline'",
+			`style-src 'self' 'unsafe-inline'${isDev ? ' https://fonts.googleapis.com' : ''}`,
 			"img-src 'self' data: blob:",
-			"font-src 'self'",
-			`connect-src 'self'${isDev ? ' https://unpkg.com' : ''}`,
+			`font-src 'self'${isDev ? ' https://fonts.gstatic.com' : ''}`,
+			`connect-src 'self'${isDev ? ' https://unpkg.com http://localhost:* http://127.0.0.1:* https://www.react-grab.com' : ''}`,
 			"frame-ancestors 'self'",
 		].join('; ');
 
