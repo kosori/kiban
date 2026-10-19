@@ -1,4 +1,2 @@
-import { type ClassValue, clsx } from 'clsx';
-import { twMerge } from 'tailwind-merge';
-
-export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
+// biome-ignore lint/performance/noBarrelFile: Keeps the existing ~/lib/utils import path stable
+export { cn } from 'cn';
