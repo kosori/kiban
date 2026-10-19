@@ -26,8 +26,8 @@ A modern, full-stack application template built with Next.js, designed to provid
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org) 22+
-- [Bun](https://bun.sh)
+- [Node.js](https://nodejs.org) 24+
+- [Bun](https://bun.sh) 1.4.3+
 - [Docker](https://www.docker.com) (for local PostgreSQL)
 
 ### Installation

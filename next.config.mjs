@@ -48,9 +48,6 @@ const config = {
 			},
 		];
 	},
-	experimental: {
-		turbopackFileSystemCacheForDev: true,
-	},
 };
 
 export default config;
